@@ -1,24 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import TodoWrapper from './Components/TodoWrapper';
+import { v4 as uuidv4 } from 'uuid';
+
+const INITIAL_STATE = [
+  { id: uuidv4(), desc: "beni ara!", isCompleted: false, isEditing: false },
+  { id: uuidv4(), desc: "seni ara!", isCompleted: false, isEditing: false },
+  { id: uuidv4(), desc: "onu ara!", isCompleted: true, isEditing: false },
+  { id: uuidv4(), desc: "onları ara!", isCompleted: false, isEditing: false },
+  { id: uuidv4(), desc: "şunları ara!", isCompleted: false, isEditing: false }
+];
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <TodoWrapper tasks={INITIAL_STATE} />
+    </>
   );
 }
 
