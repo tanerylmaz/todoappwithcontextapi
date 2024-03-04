@@ -7,7 +7,7 @@ const INITIAL_STATE = [
   { id: uuidv4(), desc: "seni ara!", isCompleted: false, isEditing: false },
   { id: uuidv4(), desc: "onu ara!", isCompleted: true, isEditing: false },
   { id: uuidv4(), desc: "onları ara!", isCompleted: false, isEditing: false },
-  { id: uuidv4(), desc: "şunları ara!", isCompleted: false, isEditing: false }
+  { id: uuidv4(), desc: "şunları ara!", isCompleted: true, isEditing: false }
 ];
 
 function App() {

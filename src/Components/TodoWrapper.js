@@ -15,6 +15,7 @@ const TodoWrapper = ({ tasks }) => {
             isCompleted: false,
             isEditing: false
         }]);
+        console.log(taskList);
     };
 
     const toggleComplete = id => {
@@ -41,8 +42,10 @@ const TodoWrapper = ({ tasks }) => {
 
     return (
         <TodoContext.Provider value={{ taskList, addTask, toggleComplete, deleteTask, toggleComplete, updateTask }}>
-            <TodoAddForm />
-            <TodoContainer />
+            <div className='container w-50 p-5'>
+                <TodoAddForm />
+                <TodoContainer />
+            </div>
         </TodoContext.Provider>
     )
 }
