@@ -3,10 +3,12 @@ import TodoAddForm from './TodoAddForm';
 import TodoContainer from './TodoContainer.js';
 import { TodoContext } from '../Context/TodoContext.js';
 import { v4 as uuidv4 } from 'uuid';
+import TodoFilter from './TodoFilter.js';
 
 
 const TodoWrapper = ({ tasks }) => {
     const [taskList, setTaskList] = useState(tasks);
+    const [filterMode, setFilterMode] = useState("all");
 
     const addTask = _desc => {
         setTaskList([...taskList, {
@@ -30,9 +32,9 @@ const TodoWrapper = ({ tasks }) => {
 
     const toggleEditing = id => {
         setTaskList(
-            taskList.map(task => task.id === id ? { ...task, isEditing: !task.isEditing } : task)
+            taskList.map(task => task.id === id ? { ...task, isEditing: true } : { ...task, isEditing: false })
         );
-    };
+    }
 
     const updateTask = (id, _desc) => {
         setTaskList(
@@ -40,10 +42,15 @@ const TodoWrapper = ({ tasks }) => {
         );
     };
 
+    const clearAll = () => {
+        setTaskList([]);
+    };
+
     return (
-        <TodoContext.Provider value={{ taskList, addTask, toggleComplete, deleteTask, toggleComplete, updateTask }}>
+        <TodoContext.Provider value={{ taskList, addTask, toggleComplete, deleteTask, toggleEditing, updateTask, clearAll, setFilterMode, filterMode }}>
             <div className='container w-50 p-5'>
                 <TodoAddForm />
+                <TodoFilter />
                 <TodoContainer />
             </div>
         </TodoContext.Provider>

@@ -1,9 +1,30 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { TodoContext } from '../Context/TodoContext';
 
-const TodoEditForm = () => {
+const TodoEditForm = ({ task }) => {
+    const ctx = useContext(TodoContext);
+
+    const [desc, setDesc] = useState(task.desc);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (desc) {
+            ctx.updateTask(task.id, desc);
+        }
+        else {
+            alert("Lütfen alanı boş bırakmayınız...")
+        }
+    };
     return (
-        <div>TodoEditForm</div>
+
+        <form onSubmit={handleSubmit}>
+            <div className="input-group mb-3">
+                <input onChange={(e) => { setDesc(e.target.value) }} value={desc} type="text" className="form-control bg-light" placeholder="What is the task today?" aria-describedby="button-addon2" />
+                <button className="btn btn-warning" type="submit" id="btn-add-task">Update</button>
+            </div>
+        </form>
+
     )
 }
 
-export default TodoEditForm
+export default TodoEditForm;

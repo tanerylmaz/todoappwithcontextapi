@@ -22,6 +22,7 @@ const TodoAddForm = () => {
                 <div className="input-group mb-3">
                     <input onChange={(e) => { setDesc(e.target.value) }} value={desc} type="text" className="form-control" placeholder="What's the task today?" aria-describedby="button-addon2" />
                     <button className="btn btn-outline-success" type="submit" id="btnAdd">Add Task</button>
+                    <button onClick={() => { ctx.clearAll() }} className="btn btn-outline-danger" type="button" id="btnAdd">Clear All</button>
                 </div>
             </form>
         </div>
