@@ -1,21 +1,27 @@
 import React, { useContext } from 'react'
 import { TodoContext } from '../Context/TodoContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 const Todo = ({ task }) => {
     const ctx = useContext(TodoContext);
     return (
         <div>
-            <li className={task.isCompleted ? "d-flex justify-content-between list-group-item rounded-2 mb-2 text-decoration-line-through text-danger " : "d-flex justify-content-between list-group-item rounded-2 mb-2 "}>
-                <div role='button' onClick={() => { ctx.toggleComplete(task.id) }} className='w-75'>
+            <li className={task.isCompleted ? "d-flex justify-content-between align-items-center list-group-item rounded-2 mb-2 text-decoration-line-through text-danger " : "d-flex justify-content-between  align-items-center list-group-item rounded-2 mb-2 "}>
+                <div role='button' onClick={() => { ctx.toggleComplete(task.id) }} className='w-75 '>
                     {task.desc}
                 </div>
                 <div>
-                    <button className='btn btn-warning btn-sm me-1' onClick={() => {
+                    <button className='btn btn-warning me-1' onClick={() => {
                         ctx.toggleEditing(task.id)
-                    }}>e</button>
-                    <button className='btn btn-danger btn-sm' onClick={() => {
+                    }}>
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                    </button>
+                    <button className='btn btn-danger' onClick={() => {
                         ctx.deleteTask(task.id)
-                    }}>d</button>
+                    }}>
+                        <FontAwesomeIcon icon={faTrashCan} />
+                    </button>
                 </div>
             </li>
         </div >
